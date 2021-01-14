@@ -2,13 +2,13 @@ require './db/mysql_connector.rb'
 
 class OrderDetailRepository 
 
-	def insert(order)
-		client.query("INSERT INTO OrderDetails (order_date, total_order, customer_id) VALUES ('#{order.order_date}', #{order.total_order}, #{order.customer_id})")
+	def insert(order_id, item_id, qty)
+		client.query("INSERT INTO OrderDetails (order_id, item_id, qty) VALUES ('#{order_id}', #{item_id}, #{qty})")
 		client.close
 	end
 
-	def update(order)
-		client.query("UPDATE OrderDetails SET order_date='#{order.order_date}', total_order='#{order.total_order}', customer_id='#{order.category_id}' WHERE id='#{order.id}'")
+	def update(id, order_id, item_id, qty)
+		client.query("UPDATE OrderDetails SET order_id='#{order_id}', item_id='#{item_id}', qty='#{qty}' WHERE id='#{id}'")
 		client.close
 	end
 

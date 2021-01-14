@@ -9,7 +9,7 @@ class CategoryRepository
 	end
 
 	def update(category)
-		client.query("'UPDATE Categories SET name='#{category.name}' WHERE id='#{category.id}'")
+		client.query("UPDATE Categories SET name='#{category.name}' WHERE id='#{category.id}'")
 		client.close
 	end
 
@@ -20,6 +20,12 @@ class CategoryRepository
 
 	def find_all
 		raw_data = client.query("SELECT * FROM Categories")
+		client.close
+		raw_data
+	end
+
+	def find_by_id(id)
+		raw_data = client.query("SELECT * FROM Categories WHERE id='#{id}'")
 		client.close
 		raw_data
 	end

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foodish</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<div class="header">
+			<ul class="tabs z-depth-1">
+				<li class="tab col s3">
+					<a href="/menu">Menu Items</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/category" class="active disabled">Categories</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/order">Orders</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/customer">Customers</a>
+				</li>
+				<li class="tab col s3 right">
+					<a href="">
+						<i class="material-icons">shopping_cart</i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col s8 title-page">
+					<h4>Edit Category</h4>
+				</div>
+				<div class="col s5">
+					<form method="POST" action="/category/update/<%= category.id %>">
+				        <div>
+				          <label for="name">Name</label>
+				          <input type="text" id="name" name="name" value="<%= category.name %>">
+				          <br>
+				          <a href="/category" class="btn red">Cancel</a>
+				          <input type="submit" value="Update" class="btn"> 
+				        </div>
+			      </form>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

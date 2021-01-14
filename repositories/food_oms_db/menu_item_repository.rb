@@ -3,13 +3,13 @@ require './db/mysql_connector.rb'
 class MenuItemRepository 
 
 
-	def insert(item)
-		client.query("INSERT INTO Items (name, price, category_id) VALUES ('#{item.name}', #{item.price}, #{item.category_id})")
+	def insert(name, price, category_id)
+		client.query("INSERT INTO Items (name, price, category_id) VALUES ('#{name}', #{price}, #{category_id})")
 		client.close
 	end
 
-	def update(item)
-		client.query("'UPDATE Items SET name='#{item.name}', price='#{item.price}', category_id='#{item.category_id}' WHERE id='#{item.id}'")
+	def update(id, name, price, category_id)
+		client.query("'UPDATE Items SET name='#{name}', price='#{price}', category_id='#{category_id}' WHERE id='#{id}'")
 		client.close
 	end
 

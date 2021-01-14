@@ -1,1 +1,75 @@
-<h1>Category</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foodish</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<div class="header">
+			<ul class="tabs z-depth-1">
+				<li class="tab col s3">
+					<a href="/menu">Menu Items</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/category" class="active disabled">Categories</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/order">Orders</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/customer">Customers</a>
+				</li>
+				<li class="tab col s3 right">
+					<a href="">
+						<i class="material-icons">shopping_cart</i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col s8 title-page">
+					<h4>Category</h4>
+				</div>
+				<div class="col s4 add-menu right">
+					<h4>
+						<a class="btn">Add</a>						
+					</h4>
+				</div>
+				<!-- <div class="col s12 search-menu">
+					<form>
+						<div class="row">
+							<div class="input-field col s9">
+								<input id="icon_prefix" type="text" class="validate">
+								<label for="icon_prefix">Search</label>
+								<i class="material-icons prefix">search</i>
+							</div>
+						</div>
+					</form>
+				</div> -->
+				<table>
+			        <thead>
+			          <tr>
+			              <th>Name</th>
+			              <th>Action</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <% categories.each do |category| %>
+			          <tr>
+			            <td><%= category.name %></td>
+			            <td>
+			            	<a href="/category/edit/<%= category.id %>"><i class="material-icons">edit</i></a>
+			            	<a href="/category/delete/<%= category.id %>"><i class="material-icons">delete</i></a>
+			            </td>
+			          </tr>
+			          <% end %>
+			        </tbody>
+			    </table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
