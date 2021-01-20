@@ -16,13 +16,31 @@ class CategoryController
 		rendered.result(binding)
 	end
 
+	def add_category(params) 
+		rendered = ERB.new(File.read("./views/category/add.erb"))
+		rendered.result(binding)
+	end
+
+	def save_category(params)
+		category = Category.new({
+			name: params['name']
+		})
+		category.insert(category)
+	end
+
 	def update_category(params)
 		category = Category.new({
 			id: params['id'],
 			name: params['name']
 		})
 		category.update(category)
-		print category
+	end
+
+	def delete_category(params)
+		category = Category.new({
+			id: params['id']
+		})
+		category.delete(category)
 	end
 
 end

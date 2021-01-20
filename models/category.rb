@@ -18,7 +18,7 @@ class Category
 				name: category["name"]
 			})
 		end
-		return categories
+		categories
 	end
 
 	def find_by_id(id)
@@ -29,19 +29,25 @@ class Category
 				name: category["name"]
 			})
 		end
-		return categories[0]
+		categories[0]
 	end
 
-	def insert 
+	def insert(category) 
 		return false unless insert_valid?
-		@@category_repository.insert(@name)
-		return true
+		@@category_repository.insert(category.name)
+		true
 	end
 
 	def update(category)
 		return false unless update_valid?
 		@@category_repository.update(category)
-		return true
+		true
+	end
+
+	def delete(category)
+		return false unless delete_valid?
+		@@category_repository.delete(category.id)
+		true
 	end
 
 	def insert_valid?

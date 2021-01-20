@@ -18,8 +18,19 @@ class OrderRepository
 		client.close
 	end
 
+	def delete_by_ids(ids)
+		client.query("DELETE FROM Orders WHERE id IN (#{ids})")
+		client.close
+	end
+
 	def find_all
 		raw_data = client.query("SELECT * FROM Orders")
+		client.close
+		raw_data
+	end
+
+	def find_all_by_customer_id(customer_id)
+		raw_data = client.query("SELECT * FROM Orders WHERE customer_id='#{customer_id}'")
 		client.close
 		raw_data
 	end

@@ -9,7 +9,7 @@ class CustomerRepository
 	end
 
 	def update(customer)
-		client.query("'UPDATE Customers SET name='#{customer.name}', phone_number='#{customer.phone_number}'  WHERE id='#{customer.id}'")
+		client.query("UPDATE Customers SET name='#{customer.name}', phone_number='#{customer.phone_number}'  WHERE id='#{customer.id}'")
 		client.close
 	end
 
@@ -20,6 +20,12 @@ class CustomerRepository
 
 	def find_all
 		raw_data = client.query("SELECT * FROM Customers")
+		client.close
+		raw_data
+	end
+
+	def find_by_id(id)
+		raw_data = client.query("SELECT * FROM Customers WHERE id='#{id}'")
 		client.close
 		raw_data
 	end
