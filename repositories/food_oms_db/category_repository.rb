@@ -30,9 +30,4 @@ class CategoryRepository
 		raw_data
 	end
 
-	def client
-		return @client unless @client.nil? || @client.closed? 
-		create_db_client
-	end
-
 end
