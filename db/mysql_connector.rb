@@ -5,7 +5,13 @@ def create_db_client
 		:host => '127.0.0.1',
 		:username => 'goacademy',
 		:password => '123456',
-		:database => 'food_oms'
+		:database => 'food_oms',
+		:port => '3306'
 		)
 	client
+end
+
+def client
+	return @client unless @client.nil? || @client.closed? 
+	create_db_client
 end

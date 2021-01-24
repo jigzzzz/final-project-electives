@@ -13,13 +13,13 @@
 					<a href="/menu">Menu Items</a>
 				</li>
 				<li class="tab col s3">
-					<a href="/category" class="active disabled">Categories</a>
+					<a href="/category">Categories</a>
 				</li>
 				<li class="tab col s3">
 					<a href="/order">Orders</a>
 				</li>
 				<li class="tab col s3">
-					<a href="/customer">Customers</a>
+					<a href="/customer" class="active disabled">Customers</a>
 				</li>
 				<li class="tab col s3 right">
 					<a href="">
@@ -31,27 +31,29 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s8 title-page">
-					<h4>Category</h4>
+					<h4>Customer</h4>
 				</div>
 				<div class="col s4 add-menu right">
 					<h4>
-						<a class="btn" href="/category/add">Add</a>						
+						<a class="btn" href="/customer/add">Add</a>						
 					</h4>
 				</div>
 				<table>
 			        <thead>
 			          <tr>
 			              <th>Name</th>
+			              <th>Phone Number</th>
 			              <th>Action</th>
 			          </tr>
 			        </thead>
 			        <tbody>
-			          <% categories.each do |category| %>
+			          <% customers.each do |customer| %>
 			          <tr>
-			            <td><%= category.name %></td>
+			            <td><%= customer.name %></td>
+			            <td><%= customer.phone_number %></td>
 			            <td>
-			            	<a href="/category/edit/<%= category.id %>"><i class="material-icons">edit</i></a>
-			            	<a href="/category/delete/<%= category.id %>"><i class="material-icons">delete</i></a>
+			            	<a href="/customer/edit/<%= customer.id %>"><i class="material-icons">edit</i></a>
+			            	<a href="/customer/delete/<%= customer.id %>"><i class="material-icons">delete</i></a>
 			            </td>
 			          </tr>
 			          <% end %>

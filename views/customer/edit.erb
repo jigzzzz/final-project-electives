@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Foodish</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheet/style.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<div class="header">
+			<ul class="tabs z-depth-1">
+				<li class="tab col s3">
+					<a href="/menu">Menu Items</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/category">Categories</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/order">Orders</a>
+				</li>
+				<li class="tab col s3">
+					<a href="/customer"  class="active disabled">Customers</a>
+				</li>
+				<li class="tab col s3 right">
+					<a href="">
+						<i class="material-icons">shopping_cart</i>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col s8 title-page">
+					<h4>Edit Customer <%= customer.name %></h4>
+				</div>
+				<div class="col s4 back right">
+					<h4>
+						<a class="btn" href="/customer">Back</a>						
+					</h4>
+				</div>
+				<div class="col s5">
+					<form method="POST" action="/customer/update/<%= customer.id %>">
+				        <div>
+				          <label for="name">Name</label>
+				          <input type="text" id="name" name="name" value="<%= customer.name %>" disabled>
+				          <br>
+				          <label for="name">Phone Number</label>
+				          <input type="text" id="phone-number" name="phone_number" value="<%= customer.phone_number %>" disabled>
+				          <br>
+				          <a class="btn red hide" onclick="cancelEditCustomer()" id="btn-cancel">Cancel</a>
+				          <input type="submit" value="Save" class="btn hide" id="btn-save"> 
+				        </div>
+			      </form>
+		          <a href="/customer/delete/<%= customer.id %>" id="btn-delete" class="btn red">Delete</a>
+		          <button class="btn" id="btn-edit" onclick="editCustomer()">Edit</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s8 title-page">
+					<h4>Order</h4>
+				</div>
+				<table>
+			        <thead>
+			          <tr>
+			              <th>Order Date</th>
+			              <th>Total Order</th> 
+			              <th>Action</th>
+			          </tr>
+			        </thead>
+			        <tbody>
+			          <% unless orders.any? %>
+			          	<tr>
+				        	<td colspan="3">There's no any orders for <%= customer.name %></td>
+				        </tr>
+			          <% else %>
+				          <% orders.each do |order| %>
+					          <tr>
+					            <td><%= order.order_date.strftime("%A, %B %d %Y") %></td>
+					            <td>$<%= order.total_order %></td>
+					            <td>
+					            	<a href="/order/detail/<%= order.id %>"><i class="material-icons">search</i></a>
+					            </td>
+					          </tr>
+				          <% end %>
+			          <% end %>
+			        </tbody>
+			    </table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function editCustomer() {
+			document.getElementById("name").disabled = false;
+			document.getElementById("phone-number").disabled = false;
+			var saveButton = document.getElementById("btn-save");
+			saveButton.classList.remove("hide");
+
+			var cancelButton = document.getElementById("btn-cancel");
+			cancelButton.classList.remove("hide");
+
+			var editButton = document.getElementById("btn-edit");
+			editButton.classList.add("hide");
+
+			var deleteButton = document.getElementById("btn-delete");
+			deleteButton.classList.add("hide");
+		}
+
+
+		var cancelButton = document.getElementById("btn-cancel");
+		cancelButton.addEventListener("click", cancelEditCustomer());
+		function cancelEditCustomer() {
+			window.event.preventDefault();
+			document.getElementById("name").disabled = true;
+			document.getElementById("phone-number").disabled = true;
+			var saveButton = document.getElementById("btn-save");
+			saveButton.classList.add("hide");
+			cancelButton.classList.add("hide");
+
+			var editButton = document.getElementById("btn-edit");
+			editButton.classList.remove("hide");
+
+			var deleteButton = document.getElementById("btn-delete");
+			deleteButton.classList.remove("hide");
+		}
+	</script>
+</body>
+</html>
