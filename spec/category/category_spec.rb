@@ -70,14 +70,17 @@ describe Category do
 	describe 'with db context' do
 		describe 'table categories is empty' do
 			before (:all) do
-				client.query("TRUNCATE TABLE OrderDetails;")	
-				p client.query("SELECT * FROM OrderDetails;")	
-				client.query("SET FOREIGN_KEY_CHECKS = 0;")
+				# client.query("TRUNCATE TABLE OrderDetails;")	
+				# client.query("SET FOREIGN_KEY_CHECKS = 0;")
 			end
 
 			before (:each) do 
+				client.query("TRUNCATE TABLE OrderDetails;")	
+				client.query("SET FOREIGN_KEY_CHECKS = 0;")
 				client.query("TRUNCATE TABLE Items;")
 				client.query("TRUNCATE TABLE Categories;")
+				client.query("SET FOREIGN_KEY_CHECKS = 1;")
+				client.close
 			end
 
 			describe '.find_all' do
@@ -89,8 +92,6 @@ describe Category do
 	      	end
 
 	      	after (:all) do
-				client.query("SET FOREIGN_KEY_CHECKS = 1;")
-				client.close
 	      	end
 		end
 	end
